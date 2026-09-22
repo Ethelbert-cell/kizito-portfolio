@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kizito Cosmos — Videographer & Graphics Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    box-sizing:border-box;
+    --bg:#1A1008;
+    --panel:#241608;
+    --panel-2:#2E1C0C;
+    --ink:#F2EAD8;
+    --muted:#A8916C;
+    --gold:#C8963C;
+    --line:rgba(242,234,216,0.10);
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  html{scroll-padding-top:70px; height:100%; overflow-x:hidden;}
+  *{box-sizing:inherit;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Work Sans',system-ui,sans-serif;
+    font-size:16px; line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.disp{ font-family:'Fraunces',Georgia,serif; font-weight:500; letter-spacing:-0.01em;}
+  a{color:inherit;}
+  img{max-width:100%;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 28px;}
+  section{scroll-margin-top:70px;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; top:env(safe-area-inset-top,0px);
+    z-index:20; background:rgba(26,16,8,0.92); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .navrow{max-width:920px; margin:0 auto; padding:16px 28px; display:flex; justify-content:space-between; align-items:center;}
+  .brand{font-family:'Fraunces',serif; font-size:1.15rem; font-weight:600;}
+  .navlinks{display:flex; gap:22px; overflow-x:auto; scrollbar-width:none;}
+  .navlinks::-webkit-scrollbar{display:none;}
+  .navlinks a{font-size:0.9rem; color:var(--muted); text-decoration:none; white-space:nowrap;}
+  .navlinks a:hover{color:var(--gold);}
+  /* Hamburger button — hidden on desktop */
+  .hamburger{
+    display:none; flex-direction:column; justify-content:center; gap:5px;
+    background:none; border:1px solid var(--line); border-radius:4px;
+    cursor:pointer; padding:7px 8px; z-index:21;
+    margin-left:auto;
+    transition:border-color 0.2s ease;
+  }
+  .hamburger:hover{border-color:var(--gold);}
+  .hamburger span{
+    display:block; width:22px; height:2px; background:var(--ink);
+    border-radius:2px; transition:transform 0.25s ease, opacity 0.2s ease;
+  }
+  /* Mobile nav drawer — floating dropdown */
+  .mobile-menu{
+    display:none; flex-direction:column; gap:8px;
+    position:absolute; top:calc(100% + 8px); right:28px; z-index:19;
+    background:var(--panel); border:1px solid var(--line); border-radius:6px;
+    padding:12px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.6);
+    /* fade/slide animation */
+    opacity:0; transform:translateY(-10px);
+    transition:opacity 0.2s ease, transform 0.2s ease;
+    pointer-events:none;
+    min-width:140px;
+  }
+  .mobile-menu.open{
+    opacity:1; transform:translateY(0);
+    pointer-events:auto;
+  }
+  .mobile-menu a{
+    font-size:0.95rem; color:var(--ink); text-decoration:none;
+    padding:8px 16px; border:1px solid var(--line); border-radius:4px;
+    display:block; text-align:center;
+    transition:color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+  .mobile-menu a:hover{color:var(--gold); border-color:var(--gold); background:rgba(200,150,60,0.05);}
+  /* Hamburger active state */
+  .hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.active span:nth-child(2){opacity:0;}
+  .hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  @media(max-width:640px){
+    .navlinks{display:none;}
+    .hamburger{display:flex;}
+    .mobile-menu{display:flex;}
+  }
+
+  /* HERO */
+  .hero{padding:96px 0 72px; position:relative; overflow:hidden;}
+  .hero::before{
+    content:""; position:absolute; top:-120px; right:-140px; width:420px; height:420px;
+    background:radial-gradient(circle, rgba(200,150,60,0.14), transparent 70%);
+    pointer-events:none;
+  }
+  .hero-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:clamp(24px,5vw,48px);
+  }
+  .hero-text{flex:1 1 0; min-width:0;}
+  .hero-portrait{
+    flex:0 0 auto;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .portrait-frame{
+    position:relative;
+    width:200px; height:240px;
+  }
+  /* Amber accent ring behind the image */
+  .portrait-frame::before{
+    content:"";
+    position:absolute;
+    inset:-6px;
+    border-radius:4px;
+    background: conic-gradient(from 120deg, var(--gold) 0%, transparent 35%, transparent 65%, var(--gold) 100%);
+    opacity:0.50;
+    z-index:0;
+  }
+  /* Soft ambient glow */
+  .portrait-frame::after{
+    content:"";
+    position:absolute;
+    inset:-24px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(200,150,60,0.16), transparent 70%);
+    z-index:0;
+    pointer-events:none;
+  }
+  .portrait-frame img{
+    position:relative; z-index:1;
+    width:200px; height:240px;
+    object-fit:cover; object-position:center top;
+    border-radius:3px;
+    display:block;
+    border:2px solid rgba(200,150,60,0.30);
+  }
+  /* Mobile: stack, image above text, text left-aligned with margin */
+  @media(max-width:640px){
+    .hero{padding:60px 0 48px;}
+    .hero-inner{flex-direction:column-reverse; align-items:flex-start; gap:28px;}
+    .hero-portrait{align-self:center;}
+    .portrait-frame{width:160px; height:192px;}
+    .portrait-frame img{width:160px; height:192px;}
+    .hero-text{padding-left:30px; padding-right:30px;}
+  }
+  @media(max-width:400px){
+    .hero{padding:48px 0 40px;}
+    .portrait-frame{width:140px; height:168px;}
+    .portrait-frame img{width:140px; height:168px;}
+  }
+  .kicker{color:var(--gold); font-size:0.85rem; letter-spacing:0.04em; margin-bottom:18px;}
+  .hero h1{font-size:clamp(2.6rem,7vw,4.4rem); line-height:1.05; margin:0 0 20px; max-width:11ch;}
+  .hero p{color:var(--muted); font-size:1.1rem; max-width:46ch; margin:0 0 30px;}
+  .btnrow{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block; padding:13px 26px; border-radius:2px; font-size:0.95rem;
+    text-decoration:none; font-weight:500;
+    transition:background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  }
+  .btn-solid{background:var(--gold); color:#1A1008;}
+  .btn-solid:hover{background:#a87828; transform:translateY(-2px);}
+  .btn-outline{border:1px solid var(--line); color:var(--ink);}
+  .btn-outline:hover{border-color:var(--gold); color:var(--gold); transform:translateY(-2px);}
+
+  /* SECTION HEADERS */
+  .sechead{margin-bottom:36px;}
+  .sechead h2{font-size:clamp(1.7rem,4vw,2.3rem); margin:0 0 10px;}
+  .sechead p{color:var(--muted); margin:0; max-width:56ch;}
+  section{padding:76px 0; border-top:1px solid var(--line);}
+  @media(max-width:640px){section{padding:52px 0;} .sechead{margin-bottom:26px;}}
+  @media(max-width:400px){section{padding:40px 0;}}
+
+  /* ABOUT */
+  .about-body p{color:var(--muted); font-size:1.05rem; max-width:62ch;}
+  .about-body p:first-of-type{color:var(--ink);}
+  .skills{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px; margin-bottom:8px;}
+  .skill{
+    border:1px solid var(--line); padding:7px 14px; font-size:0.85rem;
+    color:var(--muted); border-radius:2px;
+    transition:border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    cursor:default;
+  }
+  .skill:hover{
+    border-color:var(--gold); color:var(--ink);
+    transform:translateY(-2px);
+  }
+
+  /* VIDEO CARDS */
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media(max-width:640px){.grid2{grid-template-columns:1fr;}}
+  .vcard{
+    background:var(--panel); border:1px solid var(--line); border-radius:2px; overflow:hidden;
+  }
+  .vthumb{
+    aspect-ratio:16/9; background:linear-gradient(135deg,#2C1A08,#3D2410); position:relative;
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .vthumb img{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; display:block;
+    transition:transform 0.35s ease;
+  }
+  .vcard:hover .vthumb img{transform:scale(1.04);}
+  /* warm scrim so play dot stays readable over bright thumbnails */
+  .vthumb::after{
+    content:""; position:absolute; inset:0;
+    background:rgba(26,16,8,0.35);
+    transition:background 0.2s ease;
+  }
+  .vcard:hover .vthumb::after{background:rgba(26,16,8,0.18);}
+  .playdot{position:relative; z-index:1;}
+  .playdot{
+    width:56px; height:56px; border-radius:50%; border:1.5px solid rgba(244,241,250,0.5);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .playdot::after{content:""; border-left:14px solid var(--ink); border-top:9px solid transparent; border-bottom:9px solid transparent; margin-left:4px;}
+  .vcard .vbody{padding:20px 22px 24px;}
+  .vcard h3{font-size:1.1rem; margin:0 0 6px;}
+  .vcard .status{color:var(--gold); font-size:0.82rem; margin:0;}
+  /* native video inside vcard — landscape card, portrait fullscreen */
+  .vcard video{
+    display:block; width:100%;
+    aspect-ratio:16/9; object-fit:cover;
+    background:#000;
+  }
+  /* When the user goes fullscreen, honour the video's natural portrait dimensions */
+  .vcard video:fullscreen{
+    aspect-ratio:auto;
+    object-fit:contain;
+    width:100%; height:100%;
+    background:#000;
+  }
+  .vcard video:-webkit-full-screen{
+    aspect-ratio:auto;
+    object-fit:contain;
+    width:100%; height:100%;
+    background:#000;
+  }
+
+  /* GRAPHIC DESIGN — gallery */
+  .designgrid{display:grid; grid-template-columns:repeat(2,1fr); gap:20px;}
+  @media(max-width:640px){.designgrid{grid-template-columns:1fr;}}
+  .flyer{
+    aspect-ratio:3/4; border-radius:2px; overflow:hidden; position:relative;
+    background:var(--panel); border:1px solid var(--line);
+    cursor:pointer;
+  }
+  .flyer img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:transform 0.35s ease;
+  }
+  .flyer:hover img{transform:scale(1.04);}
+
+  /* Show All button row */
+  .design-footer{
+    display:flex; justify-content:center; margin-top:28px;
+  }
+  .btn-showall{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 28px; border-radius:2px;
+    background:transparent; border:1px solid var(--gold);
+    color:var(--gold); font-size:0.9rem; font-weight:500;
+    font-family:'Work Sans',sans-serif;
+    cursor:pointer; letter-spacing:0.02em;
+    transition:background 0.18s ease, color 0.18s ease, transform 0.15s ease;
+  }
+  .btn-showall:hover{
+    background:var(--gold); color:#1A1008; transform:translateY(-1px);
+  }
+  .btn-showall svg{width:14px; height:14px; flex-shrink:0;}
+
+  /* MODAL / LIGHTBOX */
+  .modal-overlay{
+    display:none; position:fixed; inset:0; z-index:100;
+    background:rgba(16,9,3,0.90); backdrop-filter:blur(6px);
+    align-items:flex-start; justify-content:center;
+    overflow-y:auto; padding:40px 20px;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal-box{
+    position:relative; width:100%; max-width:860px;
+    background:var(--panel); border:1px solid var(--line);
+    border-radius:4px; padding:28px 24px 32px;
+    margin:auto;
+    animation:modalIn 0.26s ease;
+  }
+  @media(max-width:480px){
+    .modal-overlay{padding:20px 12px;}
+    .modal-box{padding:20px 16px 24px;}
+  }
+  @keyframes modalIn{
+    from{opacity:0; transform:translateY(18px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .modal-header{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:22px;
+  }
+  .modal-title{
+    font-family:'Fraunces',serif; font-size:1.3rem; color:var(--ink);
+    margin:0;
+  }
+  .modal-close{
+    width:36px; height:36px; border-radius:50%;
+    background:rgba(242,234,216,0.07); border:1px solid var(--line);
+    color:var(--ink); font-size:1.2rem; line-height:1;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; transition:background 0.15s ease;
+    flex-shrink:0;
+  }
+  .modal-close:hover{background:rgba(242,234,216,0.16);}
+  .modal-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
+  }
+  @media(max-width:640px){.modal-grid{grid-template-columns:repeat(2,1fr); gap:10px;}}
+  @media(max-width:400px){.modal-grid{grid-template-columns:1fr;}}
+  .modal-item{
+    aspect-ratio:3/4; border-radius:2px; overflow:hidden;
+    background:var(--panel-2); border:1px solid var(--line);
+  }
+  .modal-item img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:transform 0.35s ease;
+  }
+  .modal-item:hover img{transform:scale(1.04);}
+
+  /* SERVICES */
+  .servicelist{border-top:1px solid var(--line);}
+  .servicerow{
+    display:flex; justify-content:space-between; gap:24px; padding:24px 0;
+    border-bottom:1px solid var(--line); align-items:baseline; flex-wrap:wrap;
+  }
+  .servicerow h3{margin:0; font-size:1.2rem; flex:0 0 220px;}
+  .servicerow p{margin:0; color:var(--muted); flex:1 1 300px; font-size:0.98rem;}
+  @media(max-width:640px){
+    .servicerow{flex-direction:column; gap:6px;}
+    .servicerow h3{flex:0 0 auto;}
+    .servicerow p{flex:0 0 auto;}
+  }
+
+  /* PROJECTS */
+  .projectlist{display:flex; flex-direction:column; gap:0;}
+  .project{padding:26px 0; border-bottom:1px solid var(--line); display:flex; gap:24px; justify-content:space-between; flex-wrap:wrap;}
+  .project h3{margin:0 0 6px; font-size:1.15rem; flex:0 0 260px;}
+  .project p{margin:0; color:var(--muted); flex:1 1 320px; font-size:0.97rem;}
+  @media(max-width:640px){
+    .project{flex-direction:column; gap:8px;}
+    .project h3{flex:0 0 auto;}
+    .project p{flex:0 0 auto;}
+  }
+
+  /* CONTACT */
+  .contactgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media(max-width:640px){.contactgrid{grid-template-columns:1fr;}}
+  .ccard{
+    background:var(--panel); border:1px solid var(--line); padding:24px; border-radius:2px;
+    text-decoration:none; display:block; transition:border-color .15s ease; text-align:center;
+  }
+  .ccard:hover{border-color:var(--gold);}
+  .ccard .clabel{color:var(--gold); font-size:0.8rem; margin-bottom:8px;}
+  .ccard .cval{font-size:1rem; word-break:break-word;}
+
+  footer{padding:40px 0 60px; color:var(--muted); font-size:0.85rem; text-align:center;}
+  footer a{color:var(--gold); text-decoration:none; transition:opacity .15s ease;}
+  footer a:hover{opacity:0.75;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="navrow">
+    <div class="brand">Kizito Cosmos</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#video">Video</a>
+      <a href="#design">Design</a>
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#video" class="mobile-link">Video</a>
+    <a href="#design" class="mobile-link">Design</a>
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#work" class="mobile-link">Work</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+  </div>
+</nav>
+
+<header class="hero wrap" id="home">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="kicker">Abuja, Nigeria, available for bookings</div>
+      <h1>Kizito Cosmos</h1>
+      <p>Videographer &amp; Graphics Designer</p>
+      <p>Clean, modern, visually engaging videos and designs for businesses, brands, organizations and events from promotional graphics and social content to full event coverage.</p>
+      <div class="btnrow">
+        <a href="#contact" class="btn btn-solid">Get in touch</a>
+        <a href="#work" class="btn btn-outline">See the work</a>
+      </div>
+    </div>
+    <div class="hero-portrait">
+      <div class="portrait-frame">
+        <img
+          src="asset/Profile pic.jpeg"
+          alt="Kizito Cosmos — Videographer &amp; Graphics Designer"
+          width="200"
+          height="240"
+          loading="eager"
+          decoding="async"
+        >
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="wrap" id="about">
+  <div class="sechead"><h2>ABOUT ME</h2></div>
+  <div class="about-body">
+    <p>I'm a creative videographer and graphics designer focused on creating clean, modern and visually engaging videos and designs for businesses, brands, organizations and events.</p>
+    <p>I specialize in promotional graphics, social media content, flyers, branding and advertising materials. My goal is to combine strong visual communication with practical design that helps clients present their businesses professionally.</p>
+    <div class="skills">
+      <span class="skill">Adobe Creative Suite</span>
+      <span class="skill">Motion Graphics &amp; Video Editing</span>
+      <span class="skill">Branding &amp; Identity Design</span>
+      <span class="skill">Social Media Graphics &amp; Ad Creatives</span>
+      <span class="skill">Layout &amp; Print Design</span>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="video">
+  <div class="sechead">
+    <h2>VIDEOGRAPHY</h2>
+    <p>A selection of recent edits full reels and clips below.</p>
+  </div>
+  <!-- YouTube link cards (landscape) -->
+  <div class="grid2">
+    <a class="vcard" href="https://youtube.com/shorts/9LF9-ISSw2I?si=60jHMeMqoQbZiL84" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+      <div class="vthumb">
+        <img src="asset/edit 1.png" alt="Featured Edit 01 thumbnail" loading="lazy" decoding="async">
+        <div class="playdot"></div>
+      </div>
+      <div class="vbody">
+        <h3>Featured Edit 01</h3>
+        <p class="status">Watch on YouTube ↗</p>
+      </div>
+    </a>
+    <a class="vcard" href="https://youtu.be/EznPCHnx5CQ?si=-L-MCDIwllkQw-NW" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+      <div class="vthumb">
+        <img src="asset/edit 2.png" alt="Featured Edit 02 thumbnail" loading="lazy" decoding="async">
+        <div class="playdot"></div>
+      </div>
+      <div class="vbody">
+        <h3>Featured Edit 02</h3>
+        <p class="status">Watch on YouTube ↗</p>
+      </div>
+    </a>
+    <!-- Local portrait clips -->
+    <div class="vcard">
+      <video
+        src="asset/video1.mp4"
+        controls
+        muted
+        preload="metadata"
+        aria-label="Portfolio video clip 1"
+      ></video>
+      <div class="vbody">
+        <h3>Clip 01</h3>
+        <p class="status">Portfolio showreel</p>
+      </div>
+    </div>
+    <div class="vcard">
+      <video
+        src="asset/video2.mp4"
+        controls
+        muted
+        preload="metadata"
+        aria-label="Portfolio video clip 2"
+      ></video>
+      <div class="vbody">
+        <h3>Clip 02</h3>
+        <p class="status">Portfolio showreel</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="design">
+  <div class="sechead">
+    <h2>GRAPHIC DESIGN</h2>
+    <p>Flyers, posters, branding and social content built for real events and campaigns.</p>
+  </div>
+  <div class="designgrid" id="designGrid">
+    <div class="flyer" onclick="openModal()">
+      <img src="asset/flyer1.jpeg" alt="Graphic design flyer 1" loading="lazy" decoding="async">
+    </div>
+    <div class="flyer" onclick="openModal()">
+      <img src="asset/flyer2.jpeg" alt="Graphic design flyer 2" loading="lazy" decoding="async">
+    </div>
+    <div class="flyer" onclick="openModal()">
+      <img src="asset/flyer3.jpeg" alt="Graphic design flyer 3" loading="lazy" decoding="async">
+    </div>
+    <div class="flyer" onclick="openModal()">
+      <img src="asset/flyer4.jpeg" alt="Graphic design flyer 4" loading="lazy" decoding="async">
+    </div>
+  </div>
+  <div class="design-footer">
+    <button class="btn-showall" id="showAllBtn" onclick="openModal()">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="1" y="1" width="6" height="6" rx="1"/>
+        <rect x="9" y="1" width="6" height="6" rx="1"/>
+        <rect x="1" y="9" width="6" height="6" rx="1"/>
+        <rect x="9" y="9" width="6" height="6" rx="1"/>
+      </svg>
+      Show All
+    </button>
+  </div>
+</section>
+
+<!-- GRAPHIC DESIGN MODAL -->
+<div class="modal-overlay" id="designModal" role="dialog" aria-modal="true" aria-label="All graphic design work">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-header">
+      <h3 class="modal-title">All Graphic Design Work</h3>
+      <button class="modal-close" id="modalClose" aria-label="Close modal">&#x2715;</button>
+    </div>
+    <div class="modal-grid">
+      <div class="modal-item"><img src="asset/flyer1.jpeg" alt="Flyer 1" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/flyer2.jpeg" alt="Flyer 2" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/flyer3.jpeg" alt="Flyer 3" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/flyer4.jpeg" alt="Flyer 4" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/flyer5.jpeg" alt="Flyer 5" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/flyer6.jpeg" alt="Flyer 6" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/flyer7.jpeg" alt="Flyer 7" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</div>
+
+<section class="wrap" id="services">
+  <div class="sechead">
+    <h2>SERVICES</h2>
+    <p>What I can take off your plate.</p>
+  </div>
+  <div class="servicelist">
+    <div class="servicerow">
+      <h3>Video editing</h3>
+      <p>Content creation, editing and cinematic video work for brands, businesses and events.</p>
+    </div>
+    <div class="servicerow">
+      <h3>Graphic design</h3>
+      <p>Flyers, posters and promotional materials built for print and digital.</p>
+    </div>
+    <div class="servicerow">
+      <h3>Social media design</h3>
+      <p>Instagram posts, stories, advertisements and campaign visuals.</p>
+    </div>
+    <div class="servicerow">
+      <h3>Brand identity</h3>
+      <p>Logos, colour systems and cohesive visual identities for growing businesses.</p>
+    </div>
+    <div class="servicerow">
+      <h3>Event design &amp; coverage</h3>
+      <p>Graphics and video coverage for church programs, youth events, conferences and special occasions.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="work">
+  <div class="sechead">
+    <h2>MY WORK</h2>
+    <p>Selected experience.</p>
+  </div>
+  <div class="projectlist">
+    <div class="project">
+      <h3>Officemate Nig Graphic Designer, 2021–2024</h3>
+      <p>Designed social media graphics that increased engagement by 75%, and produced marketing materials flyers, banners and posters for ongoing campaigns.</p>
+    </div>
+    <div class="project">
+      <h3>Cross-industry client work</h3>
+      <p>Delivered design solutions for clients across fashion, tech and lifestyle, managing the process end-to-end from concept to final delivery.</p>
+    </div>
+    <div class="project">
+      <h3>Brand visual collaboration</h3>
+      <p>Worked closely with marketing teams to develop cohesive, on-brand visuals across print and digital touchpoints.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="contact">
+  <div class="sechead">
+    <h2>CONTACT</h2>
+    <p>Based in FCT Abuja, Nigeria — open to remote and on-location work.</p>
+  </div>
+  <div class="contactgrid">
+    <a class="ccard" href="https://wa.me/2349081240974" target="_blank" rel="noopener">
+      <div class="clabel">WhatsApp</div>
+      <div class="cval">0908 124 0974</div>
+    </a>
+    <a class="ccard" href="mailto:cosmoschinemerem163@gmail.com?subject=Project%20Enquiry&body=Hi%20Kizito%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20I%27d%20love%20to%20discuss%20a%20project%20with%20you.%0A%0AHere%27s%20a%20brief%20about%20what%20I%20need%3A%0A%0A%5BDescribe%20your%20project%20here%5D%0A%0ALooking%20forward%20to%20hearing%20from%20you.%0A%0ARegards%2C%0A%5BYour%20name%5D">
+      <div class="clabel">Email</div>
+      <div class="cval">cosmoschinemerem163@gmail.com</div>
+    </a>
+    <a class="ccard" href="https://www.instagram.com/kizito_official1?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">
+      <div class="clabel">Instagram</div>
+      <div class="cval">@kizito_official1</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  Kizito Cosmos — Videographer &amp; Graphics Designer<br>
+  <span style="margin-top:8px;display:inline-block;font-size:0.78rem;">Designed &amp; developed by <a href="https://ice-portfolio-beta.vercel.app/" target="_blank" rel="noopener">chimelue.ethelbert</a></span>
+</footer>
+
+<script>
+  /* ── Hamburger menu ── */
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileMenu   = document.getElementById('mobileMenu');
+
+  function toggleMenu(force) {
+    const isOpen = mobileMenu.classList.toggle('open', force);
+    hamburgerBtn.classList.toggle('active', isOpen);
+    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+  }
+
+  hamburgerBtn.addEventListener('click', () => toggleMenu());
+
+  // Close when any mobile link is tapped
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => toggleMenu(false));
+  });
+
+  // Close when clicking outside the nav
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('nav')) toggleMenu(false);
+  });
+
+  const modal = document.getElementById('designModal');
+  const modalBox = document.getElementById('modalBox');
+  const closeBtn = document.getElementById('modalClose');
+
+  function openModal() {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    modal.scrollTop = 0;
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    document.getElementById('showAllBtn').focus();
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+
+  // Close when clicking the dark overlay (outside modal box)
+  modal.addEventListener('click', function(e) {
+    if (!modalBox.contains(e.target)) closeModal();
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+</script>
+
+</body>
+</html>
