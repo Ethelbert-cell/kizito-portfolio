@@ -133,6 +133,7 @@
     z-index:0;
     pointer-events:none;
   }
+
   .portrait-frame img{
     position:relative; z-index:1;
     width:200px; height:240px;
@@ -350,6 +351,7 @@
   .project{padding:26px 0; border-bottom:1px solid var(--line); display:flex; gap:24px; justify-content:space-between; flex-wrap:wrap;}
   .project h3{margin:0 0 6px; font-size:1.15rem; flex:0 0 260px;}
   .project p{margin:0; color:var(--muted); flex:1 1 320px; font-size:0.97rem;}
+  .project ul{margin:0; color:var(--muted); flex:1 1 320px; font-size:0.97rem; padding-left:20px;}
   @media(max-width:640px){
     .project{flex-direction:column; gap:8px;}
     .project h3{flex:0 0 auto;}
@@ -381,6 +383,7 @@
       <a href="#about">About</a>
       <a href="#video">Video</a>
       <a href="#design">Design</a>
+      <a href="#photo">Photo</a>
       <a href="#services">Services</a>
       <a href="#work">Work</a>
       <a href="#contact">Contact</a>
@@ -393,6 +396,7 @@
     <a href="#about" class="mobile-link">About</a>
     <a href="#video" class="mobile-link">Video</a>
     <a href="#design" class="mobile-link">Design</a>
+    <a href="#photo" class="mobile-link">Photo</a>
     <a href="#services" class="mobile-link">Services</a>
     <a href="#work" class="mobile-link">Work</a>
     <a href="#contact" class="mobile-link">Contact</a>
@@ -429,8 +433,10 @@
 <section class="wrap" id="about">
   <div class="sechead"><h2>ABOUT ME</h2></div>
   <div class="about-body">
-    <p>I'm a creative videographer and graphics designer focused on creating clean, modern and visually engaging videos and designs for businesses, brands, organizations and events.</p>
-    <p>I specialize in promotional graphics, social media content, flyers, branding and advertising materials. My goal is to combine strong visual communication with practical design that helps clients present their businesses professionally.</p>
+    <p>I am Kizito Cosmos, a videographer, graphic designer, and Salesian animator passionate about using digital media to tell meaningful stories, connect communities, and communicate messages of faith and hope.</p>
+    <p>My experience in video editing, graphic design, and event coverage has given me opportunities to document experiences, support communication initiatives, and create visual content that engages audiences.</p>
+    <p>As someone involved in youth ministry, I am particularly interested in exploring how storytelling, journalism, and digital media can help young people encounter Christ, share their experiences, and become active participants in the mission of the Church.</p>
+    <p>I continue to develop my creative skills with a desire to use media not only as a profession, but also as a tool for evangelization and service.</p>
     <div class="skills">
       <span class="skill">Adobe Creative Suite</span>
       <span class="skill">Motion Graphics &amp; Video Editing</span>
@@ -545,6 +551,68 @@
       <div class="modal-item"><img src="asset/flyer5.jpeg" alt="Flyer 5" loading="lazy" decoding="async"></div>
       <div class="modal-item"><img src="asset/flyer6.jpeg" alt="Flyer 6" loading="lazy" decoding="async"></div>
       <div class="modal-item"><img src="asset/flyer7.jpeg" alt="Flyer 7" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/flyer8.jpeg" alt="Flyer 8" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/flyer9.jpeg" alt="Flyer 9" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/flyer10.jpeg" alt="Flyer 10" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/flyer11.jpeg" alt="Flyer 11" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/flyer12.jpeg" alt="Flyer 12" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</div>
+
+<section class="wrap" id="photo">
+  <div class="sechead">
+    <h2>PHOTOGRAPHY</h2>
+    <p>A collection of event coverages and captured moments.</p>
+  </div>
+  <div class="designgrid" id="photoGrid">
+    <div class="flyer" onclick="openPhotoModal()">
+      <img src="asset/pic1.jpeg" alt="Photography 1" loading="lazy" decoding="async">
+    </div>
+    <div class="flyer" onclick="openPhotoModal()">
+      <img src="asset/pic2.jpeg" alt="Photography 2" loading="lazy" decoding="async">
+    </div>
+    <div class="flyer" onclick="openPhotoModal()">
+      <img src="asset/pic3.jpeg" alt="Photography 3" loading="lazy" decoding="async">
+    </div>
+    <div class="flyer" onclick="openPhotoModal()">
+      <img src="asset/pic4.jpeg" alt="Photography 4" loading="lazy" decoding="async">
+    </div>
+  </div>
+  <div class="design-footer">
+    <button class="btn-showall" id="showAllPhotoBtn" onclick="openPhotoModal()">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="1" y="1" width="6" height="6" rx="1"/>
+        <rect x="9" y="1" width="6" height="6" rx="1"/>
+        <rect x="1" y="9" width="6" height="6" rx="1"/>
+        <rect x="9" y="9" width="6" height="6" rx="1"/>
+      </svg>
+      Show All
+    </button>
+  </div>
+</section>
+
+<!-- PHOTOGRAPHY MODAL -->
+<div class="modal-overlay" id="photoModal" role="dialog" aria-modal="true" aria-label="All photography work">
+  <div class="modal-box" id="photoModalBox">
+    <div class="modal-header">
+      <h3 class="modal-title">All Photography Work</h3>
+      <button class="modal-close" id="photoModalClose" aria-label="Close modal">&#x2715;</button>
+    </div>
+    <div class="modal-grid">
+      <div class="modal-item"><img src="asset/pic1.jpeg" alt="Photo 1" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/pic2.jpeg" alt="Photo 2" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/pic3.jpeg" alt="Photo 3" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/pic4.jpeg" alt="Photo 4" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/pic5.jpeg" alt="Photo 5" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/pic6.jpeg" alt="Photo 6" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/pic7.jpeg" alt="Photo 7" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/pic8.jpeg" alt="Photo 8" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/pic9.jpeg" alt="Photo 9" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/pic10.jpeg" alt="Photo 10" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/pic11.jpeg" alt="Photo 11" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/pic12.jpeg" alt="Photo 12" loading="lazy" decoding="async"></div>
+      <div class="modal-item"><img src="asset/pic13.jpeg" alt="Photo 13" loading="lazy" decoding="async"></div>
     </div>
   </div>
 </div>
@@ -556,24 +624,16 @@
   </div>
   <div class="servicelist">
     <div class="servicerow">
-      <h3>Video editing</h3>
-      <p>Content creation, editing and cinematic video work for brands, businesses and events.</p>
+      <h3>Catholic Youth Events</h3>
+      <p>Videos and photographs from youth gatherings, retreats, camps, or formation programmes.</p>
     </div>
     <div class="servicerow">
-      <h3>Graphic design</h3>
-      <p>Flyers, posters and promotional materials built for print and digital.</p>
+      <h3>Church Communication Designs</h3>
+      <p>Posters, flyers, social media campaigns, and promotional materials created for Church activities.</p>
     </div>
     <div class="servicerow">
-      <h3>Social media design</h3>
-      <p>Instagram posts, stories, advertisements and campaign visuals.</p>
-    </div>
-    <div class="servicerow">
-      <h3>Brand identity</h3>
-      <p>Logos, colour systems and cohesive visual identities for growing businesses.</p>
-    </div>
-    <div class="servicerow">
-      <h3>Event design &amp; coverage</h3>
-      <p>Graphics and video coverage for church programs, youth events, conferences and special occasions.</p>
+      <h3>Faith-Based Storytelling</h3>
+      <p>Short documentaries, interviews, testimonies, or stories highlighting faith and young people’s experiences.</p>
     </div>
   </div>
 </section>
@@ -585,16 +645,13 @@
   </div>
   <div class="projectlist">
     <div class="project">
-      <h3>Officemate Nig Graphic Designer, 2021–2024</h3>
-      <p>Designed social media graphics that increased engagement by 75%, and produced marketing materials flyers, banners and posters for ongoing campaigns.</p>
-    </div>
-    <div class="project">
-      <h3>Cross-industry client work</h3>
-      <p>Delivered design solutions for clients across fashion, tech and lifestyle, managing the process end-to-end from concept to final delivery.</p>
-    </div>
-    <div class="project">
-      <h3>Brand visual collaboration</h3>
-      <p>Worked closely with marketing teams to develop cohesive, on-brand visuals across print and digital touchpoints.</p>
+      <h3>Graphic Designer — Officemate Nig | 2021–2024</h3>
+      <ul>
+        <li>Designed promotional graphics and social media content for marketing campaigns.</li>
+        <li>Produced flyers, banners, posters, and digital advertising materials.</li>
+        <li>Collaborated with marketing teams to maintain consistent visual communication.</li>
+        <li>Contributed to campaigns that achieved measurable audience engagement improvements.</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -672,9 +729,36 @@
     if (!modalBox.contains(e.target)) closeModal();
   });
 
-  // Close on Escape key
+  const photoModal = document.getElementById('photoModal');
+  const photoModalBox = document.getElementById('photoModalBox');
+  const photoCloseBtn = document.getElementById('photoModalClose');
+
+  function openPhotoModal() {
+    photoModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    photoModal.scrollTop = 0;
+    photoCloseBtn.focus();
+  }
+
+  function closePhotoModal() {
+    photoModal.classList.remove('open');
+    document.body.style.overflow = '';
+    document.getElementById('showAllPhotoBtn').focus();
+  }
+
+  photoCloseBtn.addEventListener('click', closePhotoModal);
+
+  // Close when clicking the dark overlay (outside photo modal box)
+  photoModal.addEventListener('click', function(e) {
+    if (!photoModalBox.contains(e.target)) closePhotoModal();
+  });
+
+  // Close on Escape key for both modals
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    if (e.key === 'Escape') {
+      if (modal.classList.contains('open')) closeModal();
+      if (photoModal.classList.contains('open')) closePhotoModal();
+    }
   });
 </script>
 
