@@ -247,7 +247,7 @@
 
   /* GRAPHIC DESIGN — gallery */
   .designgrid{display:grid; grid-template-columns:repeat(2,1fr); gap:20px;}
-  @media(max-width:640px){.designgrid{grid-template-columns:1fr;}}
+  @media(max-width:640px){.designgrid{gap:12px;}}
   .flyer{
     aspect-ratio:3/4; border-radius:2px; overflow:hidden; position:relative;
     background:var(--panel); border:1px solid var(--line);
@@ -261,7 +261,7 @@
 
   /* Show All button row */
   .design-footer{
-    display:flex; justify-content:center; margin-top:28px;
+    display:flex; justify-content:center; margin-top:28px; margin-bottom:28px;
   }
   .btn-showall{
     display:inline-flex; align-items:center; gap:8px;
@@ -321,7 +321,6 @@
     display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
   }
   @media(max-width:640px){.modal-grid{grid-template-columns:repeat(2,1fr); gap:10px;}}
-  @media(max-width:400px){.modal-grid{grid-template-columns:1fr;}}
   .modal-item{
     aspect-ratio:3/4; border-radius:2px; overflow:hidden;
     background:var(--panel-2); border:1px solid var(--line);
@@ -333,7 +332,7 @@
   .modal-item:hover img{transform:scale(1.04);}
 
   /* SERVICES */
-  .servicelist{border-top:1px solid var(--line);}
+  .servicelist{}
   .servicerow{
     display:flex; justify-content:space-between; gap:24px; padding:24px 0;
     border-bottom:1px solid var(--line); align-items:baseline; flex-wrap:wrap;
@@ -437,6 +436,14 @@
     <p>My experience in video editing, graphic design, and event coverage has given me opportunities to document experiences, support communication initiatives, and create visual content that engages audiences.</p>
     <p>As someone involved in youth ministry, I am particularly interested in exploring how storytelling, journalism, and digital media can help young people encounter Christ, share their experiences, and become active participants in the mission of the Church.</p>
     <p>I continue to develop my creative skills with a desire to use media not only as a profession, but also as a tool for evangelization and service.</p>
+    <div class="vcard" style="margin-top: 28px; max-width: 100%;">
+      <video
+        src="asset/myself.mp4"
+        controls
+        preload="metadata"
+        aria-label="Personal Introduction Video"
+      ></video>
+    </div>
     <div class="skills">
       <span class="skill">Adobe Creative Suite</span>
       <span class="skill">Motion Graphics &amp; Video Editing</span>
@@ -511,16 +518,16 @@
   </div>
   <div class="designgrid" id="designGrid">
     <div class="flyer" onclick="openModal()">
-      <img src="asset/flyer1.jpeg" alt="Graphic design flyer 1" loading="lazy" decoding="async">
-    </div>
-    <div class="flyer" onclick="openModal()">
       <img src="asset/flyer2.jpeg" alt="Graphic design flyer 2" loading="lazy" decoding="async">
     </div>
     <div class="flyer" onclick="openModal()">
-      <img src="asset/flyer3.jpeg" alt="Graphic design flyer 3" loading="lazy" decoding="async">
+      <img src="asset/flyer8.jpeg" alt="Graphic design flyer 8" loading="lazy" decoding="async">
     </div>
     <div class="flyer" onclick="openModal()">
-      <img src="asset/flyer4.jpeg" alt="Graphic design flyer 4" loading="lazy" decoding="async">
+      <img src="asset/flyer9.jpeg" alt="Graphic design flyer 9" loading="lazy" decoding="async">
+    </div>
+    <div class="flyer" onclick="openModal()">
+      <img src="asset/flyer10.jpeg" alt="Graphic design flyer 10" loading="lazy" decoding="async">
     </div>
   </div>
   <div class="design-footer">
@@ -544,13 +551,7 @@
       <button class="modal-close" id="modalClose" aria-label="Close modal">&#x2715;</button>
     </div>
     <div class="modal-grid">
-      <div class="modal-item"><img src="asset/flyer1.jpeg" alt="Flyer 1" loading="lazy" decoding="async"></div>
       <div class="modal-item"><img src="asset/flyer2.jpeg" alt="Flyer 2" loading="lazy" decoding="async"></div>
-      <div class="modal-item"><img src="asset/flyer3.jpeg" alt="Flyer 3" loading="lazy" decoding="async"></div>
-      <div class="modal-item"><img src="asset/flyer4.jpeg" alt="Flyer 4" loading="lazy" decoding="async"></div>
-      <div class="modal-item"><img src="asset/flyer5.jpeg" alt="Flyer 5" loading="lazy" decoding="async"></div>
-      <div class="modal-item"><img src="asset/flyer6.jpeg" alt="Flyer 6" loading="lazy" decoding="async"></div>
-      <div class="modal-item"><img src="asset/flyer7.jpeg" alt="Flyer 7" loading="lazy" decoding="async"></div>
       <div class="modal-item"><img src="asset/flyer8.jpeg" alt="Flyer 8" loading="lazy" decoding="async"></div>
       <div class="modal-item"><img src="asset/flyer9.jpeg" alt="Flyer 9" loading="lazy" decoding="async"></div>
       <div class="modal-item"><img src="asset/flyer10.jpeg" alt="Flyer 10" loading="lazy" decoding="async"></div>
@@ -620,7 +621,6 @@
 <section class="wrap" id="services">
   <div class="sechead">
     <h2>SERVICES</h2>
-    <p>What I can take off your plate.</p>
   </div>
   <div class="servicelist">
     <div class="servicerow">
